@@ -1,3 +1,7 @@
 {
-    "extends": "rallycoding"
+    "extends": "rallycoding",
+    "parserOptions": {
+        "ecmaVersion": 2017
+    },
+    "plugins": ["async-await"]
 }

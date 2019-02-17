@@ -1,10 +1,14 @@
 import React from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, View } from 'react-native';
 import { name as appName } from './app.json';
-import Header from './src/components/header';
+import Header from './src/components/Header';
+import AlbumList from './src/components/AlbumList';
 
 const App = () => (
-    <Header text="Albums" />
+    <View>
+        <Header text="Albums" />
+        <AlbumList />
+    </View>
 );
 
 // At least one component must be registered
