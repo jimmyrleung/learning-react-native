@@ -1,21 +1,37 @@
 // We need to keep the react imported because our JSX will be replaced
 // to a bunch of React.createElement
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-// import axios from 'axios';
+import { View } from 'react-native';
+
+// Node modules imports
+import axios from 'axios';
+
+// Custom imports
+import { constants } from '../constants/index';
+import AlbumDetail from './AlbumDetail';
 
 class AlbumList extends Component {
 
+    state = { albums: [] };
+
     async componentWillMount() {
-        // TODO: fetch the album collection
-        // const result = await axios.get('https://rallycoding.herokuapp.com/api/music_albums');
-        // console.log(result.data);
+        try {
+            const result =
+                await axios.get(`${constants.BASE_URI}${constants.ALBUMS_URI}`);
+            this.setState({ albums: result.data });
+        } catch (ex) {
+            console.log(ex);
+        }
     }
 
     render() {
         return (
             <View>
-                <Text>AlbumList!!!!</Text>
+                {
+                    this.state.albums.map((album, i) =>
+                        <AlbumDetail key={i} data={album} />
+                    )
+                }
             </View>
         );
     }
