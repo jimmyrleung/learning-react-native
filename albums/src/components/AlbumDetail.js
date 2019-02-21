@@ -60,7 +60,7 @@ const styles = {
     },
     imageStyle: {
         height: 300,
-        flex: 1,
+        flex: 1, // The image will fill all the space available INSIDE the container
         width: null
     }
 };

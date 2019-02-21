@@ -1,7 +1,7 @@
 // We need to keep the react imported because our JSX will be replaced
 // to a bunch of React.createElement
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 
 // Node modules imports
 import axios from 'axios';
@@ -26,13 +26,13 @@ class AlbumList extends Component {
 
     render() {
         return (
-            <View>
+            <ScrollView>
                 {
                     this.state.albums.map((album, i) =>
                         <AlbumDetail key={i} data={album} />
                     )
                 }
-            </View>
+            </ScrollView>
         );
     }
 

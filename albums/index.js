@@ -5,7 +5,11 @@ import Header from './src/components/Header';
 import AlbumList from './src/components/AlbumList';
 
 const App = () => (
-    <View>
+    // This flex:1 says: please expand this component to fill the entire
+    // content area of the device (if you're using a scroll component,
+    // you'll probably have some struggle trying to scroll through all 
+    // your content without this property)
+    <View style={{ flex: 1 }}>
         <Header text="Albums" />
         <AlbumList />
     </View>
