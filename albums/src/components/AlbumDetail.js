@@ -1,9 +1,13 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+
+// We can use linking everytime we want to link our app to anything external
+// Ex: browser, other apps, etc.
+import { Text, View, Image, Linking } from 'react-native';
 
 /* Custom imports */
 import Card from './Card';
 import CardSection from './CardSection';
+import Button from './Button';
 
 const AlbumDetail = ({ data }) => {
     const {
@@ -14,7 +18,11 @@ const AlbumDetail = ({ data }) => {
         imageStyle
     } = styles;
 
-    const { title, artist, thumbnail_image, image } = data;
+    const { title, artist, thumbnail_image, image, url } = data;
+
+    const onPress = () => {
+        Linking.openURL(url);
+    };
 
     return (
         <Card>
@@ -31,8 +39,15 @@ const AlbumDetail = ({ data }) => {
                     <Text>{artist}</Text>
                 </View>
             </CardSection>
+
             <CardSection>
                 <Image style={imageStyle} source={{ uri: image }} />
+            </CardSection>
+
+            <CardSection>
+                <Button onPress={onPress}>
+                    Buy now
+                </Button>
             </CardSection>
         </Card>
     );
