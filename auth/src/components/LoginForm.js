@@ -57,7 +57,7 @@ class LoginForm extends Component {
 
     renderErrorMessage() {
         return this.state.error ?
-            (<Text style={styles.errorTextStyle}>{this.state.error}</Text>) : null
+            (<Text style={styles.errorTextStyle}>{this.state.error}</Text>) : null;
     };
 
     render() {

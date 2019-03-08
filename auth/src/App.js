@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Header } from './components/common';
+import { Header, Button } from './components/common';
 import firebase from 'firebase';
 import LoginForm from './components/LoginForm';
 
 
 class App extends Component {
+
+  state = { loggedIn: null };
 
   componentWillMount() {
     // We initialize the firebase before our component mount
@@ -17,13 +19,27 @@ class App extends Component {
       storageBucket: 'learning-rn-auth.appspot.com',
       messagingSenderId: '69981354833'
     });
+
+    // Whenever the user signs in or signs out, this function will be called
+    // It also keeps our firebase session
+    firebase.auth().onAuthStateChanged((user) => {
+      this.setState({ loggedIn: !!user }, () => {
+        console.log("Is logged in?", this.state.loggedIn);
+      });
+    })
+  }
+
+  renderContent() {
+    return this.state.loggedIn ?
+      (<Button onPress={() => firebase.auth().signOut()}>Log Out</Button>) :
+      (<LoginForm />);
   }
 
   render() {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <Header text='Authentication' />
-        <LoginForm />
+        {this.renderContent()}
       </View >
     );
   }
