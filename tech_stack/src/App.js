@@ -3,6 +3,8 @@ import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from './reducers';
+import { Header } from './components/common';
+import LibraryList from './components/LibraryList';
 
 /* Provider */
 // The provider is the component that 'translates' the data within the store 
@@ -13,7 +15,10 @@ import reducers from './reducers';
 
 const App = () => (
     <Provider store={createStore(reducers)}>
-        <View />
+        <View>
+            <Header text="Tech Stack" />
+            <LibraryList />
+        </View>
     </Provider>
 );
 
