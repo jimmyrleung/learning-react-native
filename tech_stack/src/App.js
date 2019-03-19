@@ -15,7 +15,8 @@ import LibraryList from './components/LibraryList';
 
 const App = () => (
     <Provider store={createStore(reducers)}>
-        <View>
+        {/* Flex 1: Fill the whole space available */}
+        <View style={{ flex: 1 }}>
             <Header text="Tech Stack" />
             <LibraryList />
         </View>
