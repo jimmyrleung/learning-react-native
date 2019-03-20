@@ -14,7 +14,7 @@ import LibraryListItem from './LibraryListItem';
 class LibraryList extends Component {
 
     renderItem(library) {
-        return <LibraryListItem library={library} />;
+        return <LibraryListItem library={library.item} />;
     }
 
     render() {
