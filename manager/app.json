@@ -1,0 +1,10 @@
+{
+  "name": "manager",
+  "displayName": "manager",
+  "apiKey": "AIzaSyDTcntzs20OwSdQHKNMjVpBjqo__-lE5bc",
+  "authDomain": "learning-rn-manager-66a8c.firebaseapp.com",
+  "databaseURL": "https://learning-rn-manager-66a8c.firebaseio.com",
+  "projectId": "learning-rn-manager-66a8c",
+  "storageBucket": "learning-rn-manager-66a8c.appspot.com",
+  "messagingSenderId": "887162138191"
+}
