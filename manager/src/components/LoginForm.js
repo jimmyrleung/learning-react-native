@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardSection, Input, Button } from './common';
-import { emailChanged, passwordChanged } from '../actions';
+import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class LoginForm extends Component {
     onEmailChange(text) {
@@ -19,6 +19,11 @@ class LoginForm extends Component {
     componentWillUnmount() {
         this.props.emailChanged('');
         this.props.passwordChanged('');
+    };
+
+    onButtonPress() {
+        const { email, password } = this.props;
+        this.props.loginUser({ email, password });
     };
 
     render() {
@@ -43,7 +48,7 @@ class LoginForm extends Component {
                     />
                 </CardSection>
                 <CardSection>
-                    <Button>Login</Button>
+                    <Button onPress={this.onButtonPress.bind(this)}>Login</Button>
                 </CardSection>
             </Card>
         );
@@ -57,4 +62,6 @@ const mapStateToProps = state => {
     };
 };
 // This way of 'mapDispatchToProps' only works with synchronous actions
-export default connect(mapStateToProps, { emailChanged, passwordChanged })(LoginForm);
+export default connect(mapStateToProps, {
+    emailChanged, passwordChanged, loginUser
+})(LoginForm);
