@@ -9,10 +9,20 @@ class LoginForm extends Component {
     }
 
     onPasswordChange(text) {
-
+        this.props.passwordChanged(text);
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+    }
+
+    componentWillUnmount() {
+        this.props.emailChanged('');
+        this.props.passwordChanged('');
+    };
+
     render() {
+        const { email, password } = this.props;
         return (
             <Card>
                 <CardSection>
@@ -20,14 +30,16 @@ class LoginForm extends Component {
                         label='Email'
                         placeholder='test@mail.com'
                         onChangeText={this.onEmailChange.bind(this)}
+                        value={email}
                     />
                 </CardSection>
                 <CardSection>
                     <Input
                         secureTextEntry
                         label='Password'
-                        placeholder='Password'
+                        placeholder='password'
                         onChangeText={this.onPasswordChange.bind(this)}
+                        value={password}
                     />
                 </CardSection>
                 <CardSection>
@@ -38,4 +50,11 @@ class LoginForm extends Component {
     };
 }
 
-export default connect(null, { emailChanged, passwordChanged })(LoginForm);
+const mapStateToProps = state => {
+    return {
+        email: state.auth.email,
+        password: state.auth.password
+    };
+};
+// This way of 'mapDispatchToProps' only works with synchronous actions
+export default connect(mapStateToProps, { emailChanged, passwordChanged })(LoginForm);

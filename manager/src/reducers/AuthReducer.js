@@ -5,12 +5,16 @@ const INITIAL_STATE = {
     password: ''
 };
 
+/* 
+Reducers produce a new state in a way that we work with immutable states,
+that's why we return a new object instead of modifying the current state obj
+*/
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case actionTypes.EMAIL_CHANGED:
-            return { email: action.payload, ...state }
+            return { ...state, email: action.payload }
         case actionTypes.PASSWORD_CHANGED:
-            return { password: action.payload, ...state }
+            return { ...state, password: action.payload }
         default:
             return state;
     }
