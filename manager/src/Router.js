@@ -7,9 +7,17 @@ import EmployeeList from './components/EmployeeList';
 const RouterComponent = () => (
     <Router>
         {/* A root scene is required */}
-        <Scene key='root'>
-            <Scene key='login' component={LoginForm} title='Login' initial />
-            <Scene key='employeeList' component={EmployeeList} title='Employee List' />
+        {/* Each key will be translated into a navigation method */}
+        <Scene key='root' hideNavBar>
+            {/* Auth flow  */}
+            <Scene key='auth'>
+                <Scene key='login' component={LoginForm} title='Login' initial />
+            </Scene>
+
+            {/* Main flow */}
+            <Scene key='main'>
+                <Scene key='employeeList' component={EmployeeList} title='Employee List' />
+            </Scene>
         </Scene>
     </Router>
 );

@@ -1,7 +1,7 @@
 import actionTypes from '../actions/actionTypes';
 
 const INITIAL_STATE = {
-    email: '',
+    email: 'test@test.com',
     password: '',
     user: null,
     error: '',

@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import actionTypes from './actionTypes';
 import AuthService from '../services/AuthService';
+import { Actions } from 'react-native-router-flux';
 
 export const emailChanged = (text) => {
     return {
@@ -23,6 +24,7 @@ export const loginUser = ({ email, password }) => {
         try {
             const user = await AuthService.login({ email, password });
             dispatch({ type: actionTypes.LOGIN_USER_SUCCESS, payload: user });
+            Actions.main();
         }
         catch (ex) {
             console.log("Error while signing in", ex);
