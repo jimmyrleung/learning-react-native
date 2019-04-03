@@ -5,5 +5,6 @@ export default {
     LOGIN_USER_ERROR: 'login_user_fail',
     TOGGLE_AUTH_SPINNER: 'toggle_auth_spinner',
 
-    EMPLOYEE_FORM_UPDATE: 'employee_form_update'
+    EMPLOYEE_FORM_UPDATE: 'employee_form_update',
+    EMPLOYEE_CREATE: 'employee_create'
 };

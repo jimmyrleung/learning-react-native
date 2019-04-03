@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { Picker, Text } from 'react-native'
 import { connect } from 'react-redux';
 
-import { employeeFormUpdate } from '../actions'
+import { employeeFormUpdate, employeeCreate } from '../actions';
 import { Card, CardSection, Input, Button } from './common';
 
 class EmployeeForm extends Component {
 
     onButtonPress() {
-        console.log('pressed');
+        const { name, phone, shift } = this.props;
+        this.props.employeeCreate({ name, phone, shift });
     }
 
     render() {
@@ -28,7 +29,6 @@ class EmployeeForm extends Component {
                 <CardSection>
                     <Input
                         autoCapitalize='none'
-                        secureTextEntry
                         label='Phone'
                         placeholder='555-555-555'
                         onChangeText={value => employeeFormUpdate({ prop: 'phone', value })}
@@ -72,4 +72,7 @@ const mapStateToProps = (state) => {
     return { name, phone, shift };
 };
 
-export default connect(mapStateToProps, { employeeFormUpdate })(EmployeeForm);
+export default connect(mapStateToProps, {
+    employeeFormUpdate,
+    employeeCreate
+})(EmployeeForm);
