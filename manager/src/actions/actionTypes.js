@@ -6,5 +6,7 @@ export default {
     TOGGLE_AUTH_SPINNER: 'toggle_auth_spinner',
 
     EMPLOYEE_FORM_UPDATE: 'employee_form_update',
-    EMPLOYEE_CREATE: 'employee_create'
+    EMPLOYEE_CREATE: 'employee_create',
+    EMPLOYEES_FETCH_SUCCESS: 'employees_fetch_success',
+    EMPLOYEES_FETCH_ERROR: 'employees_fetch_error'
 };

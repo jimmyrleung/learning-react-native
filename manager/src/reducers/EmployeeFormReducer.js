@@ -14,6 +14,17 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 [action.payload.prop]: action.payload.value
             }
+        case actionTypes.EMPLOYEE_CREATE:
+            return {
+                ...state,
+                name: '',
+                phone: '',
+                shift: 'Monday'
+            }
+        case actionTypes.EMPLOYEES_FETCH_SUCCESS:
+            return {
+
+            }
         default:
             return state;
     }
