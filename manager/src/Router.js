@@ -2,7 +2,8 @@ import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
-import EmployeeForm from './components/EmployeeForm';
+import EmployeeCreate from './components/EmployeeCreate';
+import EmployeeEdit from './components/EmployeeEdit';
 
 /* In this component we must define all the different routes that can be visited  */
 const RouterComponent = () => (
@@ -24,16 +25,21 @@ const RouterComponent = () => (
             <Scene key='main'>
                 <Scene
                     rightTitle='Add'
-                    onRight={() => { Actions.employeeForm(); }}
+                    onRight={() => { Actions.employeeCreate(); }}
                     key='employeeList'
                     component={EmployeeList}
                     title='Employee List'
                     initial
                 />
                 <Scene
-                    key='employeeForm'
-                    component={EmployeeForm}
+                    key='employeeCreate'
+                    component={EmployeeCreate}
                     title='Register new employee'
+                />
+                <Scene
+                    key='employeeEdit'
+                    component={EmployeeEdit}
+                    title='Edit employee'
                 />
             </Scene>
         </Scene>

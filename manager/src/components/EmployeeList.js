@@ -1,40 +1,35 @@
 import React, { Component } from 'react';
-import { ListView } from 'react-native';
+import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { fetchEmployees } from '../actions'
 import EmployeeListItem from './EmployeeListItem';
 
 class EmployeeList extends Component {
+    state = { employeesList: [] };
+
     componentWillMount() {
         this.props.fetchEmployees();
-        this.createDataSource(this.props);
+        this.setEmployeesList(this.props);
     };
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
-        this.createDataSource(nextProps);
+        this.setEmployeesList(nextProps);
     };
 
-    createDataSource({ employeesList }) {
-        const ds = new ListView.DataSource({
-            rowHasChanged: (r1, r2) => r1 !== r2
-        });
-
-        this.dataSource = ds.cloneWithRows(employeesList);
-    }
-
-    renderRow(employee) {
-        return <EmployeeListItem employee={employee} />
+    setEmployeesList({ employeesList }) {
+        this.setState({ employeesList });
     }
 
     render() {
         return (
-            <ListView
-                enableEmptySections
-                dataSource={this.dataSource}
-                renderRow={this.renderRow}
-            />
+            <ScrollView>
+                {
+                    this.state.employeesList.map((e) =>
+                        <EmployeeListItem key={e.uid} employee={e} />
+                    )
+                }
+            </ScrollView>
         )
     };
 }

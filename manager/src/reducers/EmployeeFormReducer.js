@@ -21,10 +21,8 @@ export default (state = INITIAL_STATE, action) => {
                 phone: '',
                 shift: 'Monday'
             }
-        case actionTypes.EMPLOYEES_FETCH_SUCCESS:
-            return {
-
-            }
+        case actionTypes.EMPLOYEE_FORM_RESET:
+            return INITIAL_STATE;
         default:
             return state;
     }
