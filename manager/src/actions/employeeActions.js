@@ -28,12 +28,11 @@ export const employeeCreate = ({ name, phone, shift }) => {
         //         }
         //     }
         // }
-        console.log({ name, phone, shift })
         firebase.database().ref(`/users/${currentUser.uid}/employees`)
             .push({ name, phone, shift }) // push into our collection
             .then(() => {
                 dispatch({
-                    type: actionTypes.EMPLOYEE_CREATE,
+                    type: actionTypes.EMPLOYEE_FORM_RESET,
                     payload: { name, phone, shift }
                 });
 
@@ -59,24 +58,15 @@ export const fetchEmployees = () => {
     }
 }
 
-export const employeeUpdate = ({ name, phone, shift }) => {
+export const employeeUpdate = ({ uid, name, phone, shift }) => {
     const { currentUser } = firebase.auth();
 
     return dispatch => {
-        // That's our reference in the firebase db
-        // {
-        //     "users": "{
-        //         "123456": {
-        //             "employees": []
-        //         }
-        //     }
-        // }
-
-        firebase.database().ref(`/users/${currentUser.uid}/employees`)
-            .push({ name, phone, shift }) // push into our collection
+        firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+            .set({ name, phone, shift }) // push into our collection
             .then(() => {
                 dispatch({
-                    type: actionTypes.EMPLOYEE_CREATE,
+                    type: actionTypes.EMPLOYEE_FORM_RESET,
                     payload: { name, phone, shift }
                 });
 

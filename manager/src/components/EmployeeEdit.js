@@ -16,8 +16,8 @@ class EmployeeEdit extends Component {
     }
 
     onButtonPress() {
-        const { name, phone, shift } = this.props;
-        this.props.employeeUpdate({ name, phone, shift });
+        const { name, phone, shift, employee } = this.props;
+        this.props.employeeUpdate({ name, phone, shift, uid: employee.uid });
     }
 
     render() {
@@ -42,5 +42,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    employeeFormUpdate
+    employeeFormUpdate, employeeUpdate
 })(EmployeeEdit);
