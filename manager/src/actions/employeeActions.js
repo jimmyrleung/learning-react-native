@@ -32,8 +32,7 @@ export const employeeCreate = ({ name, phone, shift }) => {
             .push({ name, phone, shift }) // push into our collection
             .then(() => {
                 dispatch({
-                    type: actionTypes.EMPLOYEE_FORM_RESET,
-                    payload: { name, phone, shift }
+                    type: actionTypes.EMPLOYEE_FORM_RESET
                 });
 
                 // reset (eliminates the back arrow on the header)
@@ -66,8 +65,24 @@ export const employeeUpdate = ({ uid, name, phone, shift }) => {
             .set({ name, phone, shift }) // push into our collection
             .then(() => {
                 dispatch({
-                    type: actionTypes.EMPLOYEE_FORM_RESET,
-                    payload: { name, phone, shift }
+                    type: actionTypes.EMPLOYEE_FORM_RESET
+                });
+
+                // reset (eliminates the back arrow on the header)
+                Actions.employeeList({ type: 'reset' });
+            });
+    }
+};
+
+export const employeeDelete = ({ uid }) => {
+    const { currentUser } = firebase.auth();
+
+    return dispatch => {
+        firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+            .remove() // push into our collection
+            .then(() => {
+                dispatch({
+                    type: actionTypes.EMPLOYEE_FORM_RESET
                 });
 
                 // reset (eliminates the back arrow on the header)
